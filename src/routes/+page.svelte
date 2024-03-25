@@ -72,11 +72,19 @@
     <button on:click={submit}>submit</button>
 {/if}
 {#if submited}
+<h1 style="position:relative;left:10px;z-index:5;">top bar does nothing for now, reload to reset filters</h1>
 {#await getData}
 <p>...waiting</p>
 {:then}
 <div id="navbar">
-    <div></div>
+    <button style="margin-top:20px;position:relative;padding:1rem 4rem 1rem 1rem;float:right;margin-right:10px;">Done</button>
+    <button style="margin-top:20px;position:relative;padding:1rem 4rem 1rem 1rem;float:right;margin-right:10px;">Share</button>
+    <center>
+        <select style="margin-top:20px;position:relative;left:8rem;">
+            <option style="color: black;background-color:#cccccc;" selected value="0">Best Time</option>
+            <option style="color: black;background-color:#cccccc;" value="1">Most Completions</option>
+        </select>
+    </center>
 </div>
 <center><div id="body">
     
@@ -115,6 +123,7 @@
     <p>Website by Guy</p>
     <a href="https://github.com/GuySandler/Ice-Dodo-Leaderboard">Github</a>
 </div>
+
 
 <style>
     * {
@@ -179,6 +188,12 @@
         color: #141a39;
         text-transform: uppercase;
         cursor: default;
+    }
+    button {
+        font-family: "Rubik", sans-serif;
+        font-size: 1rem;
+        color: #141a39;
+        cursor: pointer;
     }
     p {
         font-family: "Rubik", sans-serif;
@@ -314,11 +329,32 @@
     }
     #navbar {
         width: 100%;
-        height: 5rem;
+        height: 100px;
         background-color: #5c5be5;
         position: absolute;
         top: 0;
         left: 0;
         z-index: 1;
     }
+    select {
+        appearance: none;
+        border: 0;
+        outline: 0;
+        font: inherit;
+        width: 20rem;
+        padding: 1rem 4rem 1rem 1rem;
+        background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center / 1.4em,
+        linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
+        color: white;
+        border-radius: 0.25em;
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        &::-ms-expand {
+            display: none;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
 </style>
