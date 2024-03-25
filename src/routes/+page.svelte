@@ -8,14 +8,15 @@
     let time = [];
     let skinId = [];
     let submited = false;
-    let levelID = '';
+    let SortByComplete = false;
+    let levelID = 'forest';
 
     // Function to fetch data from the API
     async function fetchLeaderboardData() {
         const data = {
             mapId: levelID,
             tokenId: null,
-            isSortedByCompletion: false,
+            isSortedByCompletion: SortByCompleate,
         };
 
         const options = {
@@ -38,7 +39,7 @@
                 for (let i = 0; i < leaderboardData.length; i++) {
                     username.push(leaderboardData[i].username);
                     compleations.push(leaderboardData[i].completions);
-                    time.push(leaderboardData[i].time/100 + " sec");
+                    time.push(leaderboardData[i].time);
                     skinId.push(leaderboardData[i].skinId);
                 }
                 // console.log(username);
@@ -66,7 +67,8 @@
     }
 </script>
 {#if !submited}
-    enter level ID:<input bind:value={levelID}>
+    Enter Level ID:<input bind:value={levelID}><br>
+    Sort By completion: <input type="checkbox" bind:checked={SortByComplete}><br>
     <button on:click={submit}>submit</button>
 {/if}
 {#if submited}
@@ -75,7 +77,9 @@
 {:then}
 <center><div id="body"><main style="border: 1px red solid;">
     <div id="header">
-    <h1>Ranking</h1>
+    <h2>Ranking</h2>
+    <h2 style="position:relative;left:-5%;">Compleations</h2>
+    <h2>Time</h2>
     </div>
     <div id="leaderboard">
     <div class="ribbon"></div>
@@ -84,6 +88,7 @@
             <tr>
             <td class="number">{i+1}</td>
             <td class="name">{name}</td>
+            <td class="name">{compleations[i]}</td>
             <td class="points">{time[i]}
                 {#if i == 0}
                     <img class="gold-medal" src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true" alt="gold medal"/>
@@ -142,6 +147,13 @@
     }
 
     h1 {
+        font-family: "Rubik", sans-serif;
+        font-size: 1.7rem;
+        color: #141a39;
+        text-transform: uppercase;
+        cursor: default;
+    }
+    h2 {
         font-family: "Rubik", sans-serif;
         font-size: 1.7rem;
         color: #141a39;
