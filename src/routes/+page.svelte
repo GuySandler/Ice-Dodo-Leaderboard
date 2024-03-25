@@ -16,7 +16,7 @@
         const data = {
             mapId: levelID,
             tokenId: null,
-            isSortedByCompletion: SortByCompleate,
+            isSortedByCompletion: SortByComplete,
         };
 
         const options = {
@@ -75,11 +75,17 @@
 {#await getData}
 <p>...waiting</p>
 {:then}
-<center><div id="body"><main style="border: 1px red solid;">
+<div id="navbar">
+    <div></div>
+</div>
+<center><div id="body">
+    
+
+    <main style="border: 2px red solid;">
     <div id="header">
-    <h2>Ranking</h2>
-    <h2 style="position:relative;left:-5%;">Compleations</h2>
-    <h2>Time</h2>
+        <h2>Ranking</h2>
+        <h2 style="position:relative;left:-5%;">Completion</h2>
+        <h2>Time</h2>
     </div>
     <div id="leaderboard">
     <div class="ribbon"></div>
@@ -104,6 +110,12 @@
 {/await}
 {/if}
 
+<div style="margine:auto;position:absolute;top:90%;">
+    <p>Ice Dodo by Onionfist (<a href="onionfist.com">onionfist.com</a>)</p>
+    <p>Website by Guy</p>
+    <a href="https://github.com/GuySandler/Ice-Dodo-Leaderboard">Github</a>
+</div>
+
 <style>
     * {
         font-size: 62, 5%;
@@ -112,7 +124,7 @@
     }
 
     #body {
-        height: 200vh;
+        height: 100%;
         width: 100%;
         background-color: #fbfaff;
         display: flex;
@@ -122,11 +134,13 @@
         position: absolute;
         top:0;
         left:0;
+
     }
 
     main {
+        margin-top: 5%;
         width: 40rem;
-        height: 45%;
+        height: 75%;
         background-color: #ffffff;
         -webkit-box-shadow: 0px 5px 15px 8px #e4e7fb;
         box-shadow: 0px 5px 15px 8px #e4e7fb;
@@ -144,6 +158,12 @@
         align-items: center;
         justify-content: space-between;
         padding: 2.5rem 2rem;
+        background-color: rgb(204, 204, 204);
+        z-index: 1;
+        /* filter: drop-shadow(10px 10px 10px black); */
+        /* make a stright down drop shadow that goes for 50 px */
+        box-shadow: 0px 5px 15px 8px #a7a7a7;
+        border-radius: .5rem 0.5rem 0 0;
     }
 
     h1 {
@@ -158,6 +178,13 @@
         font-size: 1.7rem;
         color: #141a39;
         text-transform: uppercase;
+        cursor: default;
+    }
+    p {
+        font-family: "Rubik", sans-serif;
+        /* font-size: 1.7rem; */
+        color: #141a39;
+        /* text-transform: uppercase; */
         cursor: default;
     }
 
@@ -284,5 +311,14 @@
         * {
         font-size: 45%;
         }
+    }
+    #navbar {
+        width: 100%;
+        height: 5rem;
+        background-color: #5c5be5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
     }
 </style>
